@@ -1,0 +1,55 @@
+<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+    <h3 class="uk-card-title uk-text-uppercase">Registrarse</h3>
+
+    <form [formGroup]="registerForm">
+        <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
+                <input class="uk-input" type="email" 
+                placeholder="Correo electronico"
+                name="userEmail" 
+                formControlName="userEmail"
+                >
+            </div>
+            <div *ngIf="registerForm.controls?.userEmail?.invalid && registerForm.controls?.userEmail.touched">
+            <p *ngIf="registerForm.controls?.userEmail?.errors.required" class="uk-text-warning">*Email requerido.</p>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                <input matInput class="uk-input" type="password" 
+                placeholder="Contraseña" 
+                autocomplete="password" 
+                formControlName="password"
+                (keyup)="checkPassSame()"
+                >
+            </div>
+            <div *ngIf="registerForm.controls?.password?.invalid && registerForm.controls?.password.touched">
+            <p *ngIf="registerForm.controls?.password?.errors.required" class="uk-text-warning">*Campo requerido.</p>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                <input matInput class="uk-input" type="password" 
+                placeholder="Repetir contraseña" 
+                autocomplete="password"
+                formControlName="confPass"
+                (keyup)="checkPassSame()"
+                >
+            </div>
+            <div *ngIf="registerForm.controls?.confPass?.invalid && registerForm.controls?.confPass.touched">
+                <p *ngIf="registerForm.controls?.confPass?.errors.required" class="uk-text-warning">*Campo requerido.</p>
+            </div>
+            <div *ngIf="passmsg != '' && !registerForm.controls?.confPass?.errors?.required">
+                <p class="uk-text-warning">*{{passmsg}}</p>
+            </div>
+        </div>
+        <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
+                [disabled]='!registerForm.valid'
+                >Registrarse</button>
+    </form>
+
+
+</div>

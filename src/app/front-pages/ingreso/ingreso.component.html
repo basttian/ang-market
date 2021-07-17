@@ -1,0 +1,36 @@
+<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+    <h3 class="uk-card-title uk-text-uppercase">Ingresar</h3>
+    
+       <form [formGroup]="ingresoForm">
+        <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
+                <input class="uk-input" type="email" 
+                placeholder="Correo electronico"
+                name="userEmail" 
+                formControlName="userEmail"
+                >
+            </div>
+            <div *ngIf="ingresoForm.controls?.userEmail?.invalid && ingresoForm.controls?.userEmail.touched">
+            <p *ngIf="ingresoForm.controls?.userEmail?.errors.required" class="uk-text-warning">*Email requerido.</p>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                <input matInput class="uk-input" type="password" 
+                placeholder="Contraseña" 
+                autocomplete="password" 
+                formControlName="password"
+                >
+            </div>
+            <div *ngIf="ingresoForm.controls?.password?.invalid && ingresoForm.controls?.password.touched">
+            <p *ngIf="ingresoForm.controls?.password?.errors.required" class="uk-text-warning">*Contraseña requerida.</p>
+            </div>
+        </div>
+        <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
+                [disabled]='!ingresoForm.valid'
+                >Ingresar
+        </button>
+    </form>
+</div>
