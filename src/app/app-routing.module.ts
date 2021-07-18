@@ -8,7 +8,7 @@ import {RegistroComponent} from './front-pages/registro/registro.component';
 const redirectLoggedInToItems = () => redirectUnauthorizedTo(['home']);
 
 //BACK
-import { DesktopComponent } from './back-pages/desktop/desktop/desktop.component';
+import { DesktopComponent } from './back-pages/desktop/desktop.component';
 
 const routes: Routes = [
   {

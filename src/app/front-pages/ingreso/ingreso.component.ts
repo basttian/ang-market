@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AsyncValidatorFn } from '@angular/forms';
-
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-ingreso',
@@ -11,7 +11,11 @@ export class IngresoComponent implements OnInit {
 
 ingresoForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder) { 
+restorePassForm: FormGroup = new FormGroup({
+  restoreInputPass: new FormControl('',[Validators.email,Validators.required])
+})
+
+  constructor(private fb: FormBuilder, public authService:AuthService) { 
 
     this.ingresoForm = fb.group({
       userEmail:['', [Validators.email,Validators.required]],
@@ -21,6 +25,10 @@ ingresoForm: FormGroup = new FormGroup({});
     this.ingresoForm.setValue({
       userEmail: '',
       password: ''
+    });
+
+    this.restorePassForm.setValue({
+      restoreInputPass: '',
     });
 
   }

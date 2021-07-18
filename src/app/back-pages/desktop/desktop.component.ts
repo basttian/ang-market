@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../../services/auth/auth.service'
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-desktop',
@@ -16,5 +16,6 @@ export class DesktopComponent implements OnInit {
   cerrarSesion(){
     return this.usuario.logout()
   }
+
 
 }

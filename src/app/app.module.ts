@@ -10,7 +10,7 @@ import { IngresoComponent } from './front-pages/ingreso/ingreso.component';
 import { RegistroComponent } from './front-pages/registro/registro.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-import { DesktopComponent } from './back-pages/desktop/desktop/desktop.component';
+import { DesktopComponent } from './back-pages/desktop/desktop.component';
 import { AuthService } from './services/auth/auth.service';
 
 @NgModule({

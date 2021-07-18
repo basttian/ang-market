@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AsyncValidatorFn } from '@angular/forms';
 
 import { ConfirmedValidator } from '../../confirmed.validator';
+import {AuthService} from '../../services/auth/auth.service';
+
 
 @Component({
   selector: 'app-registro',
@@ -15,7 +17,7 @@ registerForm: FormGroup = new FormGroup({});
 
   passmsg: string | undefined;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public authService:AuthService) {
 
       this.registerForm = fb.group({
       userEmail:['', [Validators.email,Validators.required]],
@@ -31,6 +33,9 @@ registerForm: FormGroup = new FormGroup({});
       confPass: ''
     });
   }
+
+
+
 
   ngOnInit(): void {}
 

@@ -1,11 +1,21 @@
 <nav class="uk-navbar-container uk-margin" uk-navbar>
     <div class="nav-overlay uk-navbar-left">
-        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#" uk-toggle="target: #offcanvas-push"></a>
-        <a class="uk-navbar-item uk-logo uk-active" routerLink="/home">TIENDA</a>
-        <ul class="uk-navbar-nav">
-            <li><a routerLink="/registrar">Registrar</a></li>
-            <li><a routerLink="/ingresar">Ingresar</a></li>
+        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#" 
+            uk-toggle="target: #offcanvas-push" 
+            *ngIf="auth.user | async as user"></a>
+        <a class="uk-navbar-item uk-logo" routerLink="/home">TIENDA</a>
+        
+        <ul class="uk-navbar-nav" >
+            <li><a class="uk-active" routerLink="/desktop" *ngIf="auth.user | async as user; else menunav" >Mi cuenta</a></li>
         </ul>
+              
+        <ng-template #menunav>
+            <ul class="uk-navbar-nav">
+                <li><a routerLink="/registrar">Registrar</a></li>
+                <li><a routerLink="/ingresar">Ingresar</a></li> 
+            </ul>
+        </ng-template>
+           
     </div>
 
     <div class="nav-overlay uk-navbar-right">

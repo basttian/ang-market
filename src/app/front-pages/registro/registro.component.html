@@ -9,6 +9,7 @@
                 placeholder="Correo electronico"
                 name="userEmail" 
                 formControlName="userEmail"
+                #userName
                 >
             </div>
             <div *ngIf="registerForm.controls?.userEmail?.invalid && registerForm.controls?.userEmail.touched">
@@ -23,6 +24,7 @@
                 autocomplete="password" 
                 formControlName="password"
                 (keyup)="checkPassSame()"
+                #userPassword
                 >
             </div>
             <div *ngIf="registerForm.controls?.password?.invalid && registerForm.controls?.password.touched">
@@ -48,8 +50,14 @@
         </div>
         <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
                 [disabled]='!registerForm.valid'
+                (click)="authService.createUser(userName.value,userPassword.value)"
                 >Registrarse</button>
     </form>
 
 
+
+
+<div class="uk-card-footer uk-background-muted">
+    <a class="uk-button uk-button-text uk-text-small" routerLink="/ingresar">Ya tengo una cuenta</a>
+</div>
 </div>

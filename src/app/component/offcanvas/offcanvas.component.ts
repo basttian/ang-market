@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-offcanvas',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OffcanvasComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService:AuthService, public auth:AngularFireAuth) { }
 
   ngOnInit(): void {
   }
