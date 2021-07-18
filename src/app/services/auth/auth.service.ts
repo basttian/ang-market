@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
 
+import { UsersService } from '../users/users.service'
+
 import UIkit from '../../../assets/js/uikit';
 
 
@@ -11,13 +13,13 @@ import UIkit from '../../../assets/js/uikit';
 })
 export class AuthService {
 
-  constructor(public auth: AngularFireAuth,public routes:Router, private _ngZone: NgZone) { 
+  constructor(public auth: AngularFireAuth,public routes:Router, private _ngZone: NgZone, public users: UsersService) { 
 
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         console.log('User is signed In')
         this._ngZone.run(()=>{
-          this.routes.navigate(['desktop'])
+          this.routes.navigate(['home'])
         })
       } else {
         console.log('User is signed Out')
@@ -37,20 +39,24 @@ export class AuthService {
     this.auth.createUserWithEmailAndPassword(paramUser, paramPass)
       .then((userCredential) => {
         var user = userCredential.user;
-        UIkit.notification({
-          message: `<span uk-icon=\'icon: user\'></span> 
-                    <span> Bienvenido ${user.email} </span>`,
-          status: 'primary',
-          pos: 'top-center',
-          timeout: 3500
-        });
-        this._ngZone.run(()=>{
-          this.routes.navigate(['home'])
-        })
-        firebase.auth().currentUser.sendEmailVerification()
-          .then(() => {
-            this.verificationEmailFalse()
+        let data = {
+          uid:user.uid,
+          email:user.email,
+          type: ''
+        }
+        this.users.createUser(data).then(()=>{
+          UIkit.notification({
+            message: `<span uk-icon=\'icon: user\'></span> 
+                      <span> Bienvenido ${user.email} </span>`,
+            status: 'primary',
+            pos: 'top-center',
+            timeout: 3500
           });
+          firebase.auth().currentUser.sendEmailVerification()
+            .then(() => {
+              this.verificationEmailFalse()
+            });
+          }).catch((e)=>{console.log(e)});
       }).catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
