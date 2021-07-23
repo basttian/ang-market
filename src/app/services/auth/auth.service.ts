@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { UsersService } from '../users/users.service'
 
-import UIkit from '../../../assets/js/uikit';
+import UIkit from '../../../assets/js/uikit.js';
 
 
 @Injectable({
@@ -44,6 +44,7 @@ export class AuthService {
           email:user.email,
           type: ''
         }
+        //almacenar usuario
         this.users.createUser(data).then(()=>{
           UIkit.notification({
             message: `<span uk-icon=\'icon: user\'></span> 
@@ -52,6 +53,7 @@ export class AuthService {
             pos: 'top-center',
             timeout: 3500
           });
+          //enviar verificacion al email
           firebase.auth().currentUser.sendEmailVerification()
             .then(() => {
               this.verificationEmailFalse()

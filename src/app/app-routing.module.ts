@@ -5,7 +5,7 @@ import {HomeComponent} from './front-pages/home/home.component';
 import {IngresoComponent} from './front-pages/ingreso/ingreso.component';
 import {RegistroComponent} from './front-pages/registro/registro.component';
 
-const redirectLoggedInToItems = () => redirectUnauthorizedTo(['home']);
+const redirectLoggedInToItems = () => redirectUnauthorizedTo(['ingresar']);
 
 //BACK
 import { DesktopComponent } from './back-pages/desktop/desktop.component';
